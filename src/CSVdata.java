@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.operations.String;
 
 public class CSVdata {
 	/***
@@ -9,6 +10,35 @@ public class CSVdata {
 
 	private double[][] data;
 	private String[] columnNames;
+	private int numRows;
+	private String filePathToCSV;
+	
+	public CSVdata(String filepath, String[] columnNames, int startRow){
+		this.filePathToCSV = filepath;
+		
+		String dataString = readFileAsString(filepath);
+		String[] lines = dataString.split("\n");
+		
+		int n = lines.length - startRow;
+		this.numRows = n;
+		int numColumns = columnNames.length;
+		
+		this.columnNames = columnNames;
+		
+		this.data = new double[n][numColumns];
+		for(int i = 0; i < lines.length - startRow; i++){
+			String line = lines[startRow + 1];
+			String[] coords = line.split(",");
+			
+			for(int j = 0; j < numColumns; j++){
+				if(coords[j].endsWith("#")) coords[j] = coords[j].substring(0, coords[j].length()-1);
+				double val = Double.parseDouble(coords[j]);
+				data[i][j] = val;
+			}
+		}
+		
+		
+	}
 
 	public static CSVdata readCSVFile(String filename, int numLinesToIgnore, String[] columnNames) {
 		return null;
