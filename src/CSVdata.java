@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 
 public class CSVdata {
 	/***
@@ -273,7 +272,7 @@ public class CSVdata {
 	 * @return title of column
 	 */
 	public String getTitleCol(int col) {
-		return null;
+		return columnNames[col];
 	}
 
 	/***
