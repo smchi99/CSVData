@@ -85,7 +85,7 @@ public class CSVdata {
 	 * @return the row we're returning
 	 */
 	public double[] getIndividualRow(int row) {
-		return data[row];
+		return this.data[row];
 	}
 
 	/***
