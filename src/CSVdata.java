@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
 import com.sun.org.apache.xpath.internal.operations.String;
 
 public class CSVdata {
@@ -38,6 +42,21 @@ public class CSVdata {
 		}
 		
 		
+	}
+
+	public String readFileAsString(String filepath) {
+		StringBuilder output = new StringBuilder();
+		
+		try(Scanner scanner = new Scanner(new File(filepath))){
+				
+				while(scanner.hasNext()){
+					java.lang.String line = scanner.nextLine();
+					output.append(line + System.getProperty("line.separator"));
+				}
+				
+		}catch(IOException e){
+			e.printStackTrace();
+		}return output.toString();
 	}
 
 	public static CSVdata readCSVFile(String filename, int numLinesToIgnore, String[] columnNames) {
